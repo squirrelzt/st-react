@@ -8,10 +8,21 @@ class TodoList extends Component{
             list: []
         }
     }
+    handleInputChange(e){
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
     render() {
         return(
             <Fragment>
-                <div><input/><button>提交</button></div>
+                <div>
+                    <input
+                        value={this.state.inputValue}
+                        onChange={this.handleInputChange.bind(this)}
+                    />
+                    <button>提交</button>
+                </div>
                 <ul></ul>
             </Fragment>
         )
