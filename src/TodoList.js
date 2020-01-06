@@ -8,10 +8,29 @@ class TodoList extends Component{
             list: []
         }
     }
-    handleInputChange(e){
+    handleInputChange(e) {
         this.setState({
             inputValue: e.target.value
         })
+    }
+    handleBtnClick() {
+        this.setState({
+            list: [...this.state.list, this.state.inputValue],
+            inputValue: ''
+        })
+    }
+    handleItemDelete(index) {
+        const list = [...this.state.list];
+        list.splice(index, 1);
+        this.setState({
+            list: list
+        })
+
+        // 错误用法
+        // this.state.list.splice(index, 1);
+        // this.setState({
+        //     list: this.state.list
+        // })
     }
     render() {
         return(
@@ -21,9 +40,15 @@ class TodoList extends Component{
                         value={this.state.inputValue}
                         onChange={this.handleInputChange.bind(this)}
                     />
-                    <button>提交</button>
+                    <button onClick={this.handleBtnClick.bind(this)}>提交</button>
                 </div>
-                <ul></ul>
+                <ul>
+                    {
+                        this.state.list.map((item,index) => {
+                            return <li key={index} onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
+                        })
+                    }
+                </ul>
             </Fragment>
         )
     }
