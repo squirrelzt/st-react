@@ -40,6 +40,7 @@ class TodoList extends Component{
                         value={this.state.inputValue}
                         onChange={this.handleInputChange.bind(this)}
                     />
+                    {/*这是注释*/}
                     <button onClick={this.handleBtnClick.bind(this)}>提交</button>
                 </div>
                 <ul>
