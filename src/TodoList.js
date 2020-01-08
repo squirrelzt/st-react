@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import './style.css';
 import TodoItem from './TodoItem';
+import './style.css';
 
 class TodoList extends Component{
     constructor(props) {
@@ -8,31 +8,71 @@ class TodoList extends Component{
         this.state = {
             inputValue: '',
             list: []
-        }
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleItemDelete = this.handleItemDelete.bind(this);
     }
     handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value
-        })
+        // this.setState({
+        //     inputValue: e.target.value
+        // });
+        // this.setState(() => {
+        //     return {
+        //         inputValue: e.target.value
+        //     }
+        // });
+        //解决异步问题
+        const value = e.target.value;
+        this.setState(() => ({
+            inputValue: value
+        }));
     }
     handleBtnClick() {
-        this.setState({
-            list: [...this.state.list, this.state.inputValue],
-            inputValue: ''
-        })
+        // this.setState({
+        //     list: [...this.state.list, this.state.inputValue],
+        //     inputValue: ''
+        // });
+        this.setState((prevState) => ({
+            // list: [...this.state.list, this.state.inputValue],
+            list: [...prevState.list, prevState.inputValue],
+        }));
     }
     handleItemDelete(index) {
-        const list = [...this.state.list];
-        list.splice(index, 1);
-        this.setState({
-            list: list
-        })
+        // const list = [...this.state.list];
+        // list.splice(index, 1);
+        // this.setState({
+        //     list: list
+        // });
 
+        this.setState((preState) => {
+            const list = [...preState.list];
+            list.splice(index, 1);
+            return {
+                list
+            }
+        });
         // 错误用法
         // this.state.list.splice(index, 1);
         // this.setState({
         //     list: this.state.list
         // })
+    }
+    getTodoItem() {
+        return this.state.list.map((item,index) => {
+            return (
+                    <TodoItem
+                        key={index}
+                        content={item}
+                        index={index}
+                        deleteItem={this.handleItemDelete}
+                    >
+                    {/*<li key={index}
+                                       onClick={this.handleItemDelete.bind(this, index)}
+                                       dangerouslySetInnerHTML={{__html:item}}></li>*/}
+                    </TodoItem>
+            )
+        });
     }
     render() {
         return(
@@ -43,28 +83,13 @@ class TodoList extends Component{
                         id="insertArea"
                         className='input'
                         value={this.state.inputValue}
-                        onChange={this.handleInputChange.bind(this)}
+                        onChange={this.handleInputChange}
                     />
                     {/*这是注释*/}
-                    <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+                    <button onClick={this.handleBtnClick}>提交</button>
                 </div>
                 <ul>
-                    {
-                        this.state.list.map((item,index) => {
-                            return (
-                                <div>
-                                    <TodoItem
-                                        content={item}
-                                        index={index}
-                                        deleteItem={this.handleItemDelete.bind(this)}
-                                    />
-                                    {/*<li key={index}
-                                       onClick={this.handleItemDelete.bind(this, index)}
-                                       dangerouslySetInnerHTML={{__html:item}}></li>*/}
-                                </div>
-                                )
-                        })
-                    }
+                    {this.getTodoItem()}
                 </ul>
             </Fragment>
         )
