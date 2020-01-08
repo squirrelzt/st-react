@@ -66,3 +66,28 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+state数据
+JSX模板
+数据+模板 组合，生成真实的DOM，来显示
+state改变
+数据+模板 组合，生成真实的DOM，替换原来的DOM
+缺陷：
+第一次生成了完整的DOM
+第二次生成了完整的DOM
+第二次替换第一次，非常耗性能
+
+state数据
+JSX模板
+生成虚拟DOM，JS对象，用了描述真实DOM
+用虚拟DOM生成真实的DOM，来显示
+state改变
+生成新的虚拟DOM
+两个虚拟DOM做比对，找差异
+state发生变化
+生成新的虚拟DOM
+直接操作差异部分
+
+虚拟DOM比对，同层比对
+
+不能用index做key,数组删除等重新排序时，key会改变，可以用对象item做key
