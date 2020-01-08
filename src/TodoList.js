@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './style.css';
 
 class TodoList extends Component{
@@ -14,6 +15,20 @@ class TodoList extends Component{
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
+    // componentWillMount() {
+    // }
+    componentDidMount() {
+    }
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return true;
+    }
+    // componentWillUpdate(nextProps, nextState, nextContext) {
+    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+    }
+    // componentWillReceiveProps(nextProps, nextContext) {
+    // }
+
     handleInputChange(e) {
         // this.setState({
         //     inputValue: e.target.value

@@ -8,6 +8,15 @@ class TodoItem extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this)
     }
+    // 减少子组件没必要的render
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (nextProps.content !== this.props.content) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     handleClick() {
         const { deleteItem, index } = this.props;
         deleteItem(index);

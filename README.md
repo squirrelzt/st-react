@@ -91,3 +91,21 @@ state发生变化
 虚拟DOM比对，同层比对
 
 不能用index做key,数组删除等重新排序时，key会改变，可以用对象item做key
+
+生命周期函数指程序会在某个时刻自动调用执行
+initialization:
+    constructor
+mounting:
+    componentWillMount(组件即将挂载到页面上的时候执行，render之前)
+    render(必须存在的生命周期函数)
+    componentDidMount(组件被挂载到页面上的时候执行，render之后，ajax请求执行位置)
+updation:
+    props:
+        componentWillReceiveProps(父组件的render被执行，从父组件接收参数，第一次存在于父组件中不执行，已经在父组件中才会执行)
+    state:
+        shouldComponentUpdate(组件被更新之前，要求返回boolean类型结果)
+        componentWillUpdate(shouldComponentUpdate执行后，如果true执行，否则不执行)
+        render
+        componentDidUpdate
+UnMounting:
+     componentWillUnMount
