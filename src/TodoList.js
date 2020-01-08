@@ -24,7 +24,8 @@ class TodoList extends Component{
         //     }
         // });
         //解决异步问题
-        const value = e.target.value;
+        // const value = e.target.value;
+        const value = this.input.value;
         this.setState(() => ({
             inputValue: value
         }));
@@ -37,7 +38,13 @@ class TodoList extends Component{
         this.setState((prevState) => ({
             // list: [...this.state.list, this.state.inputValue],
             list: [...prevState.list, prevState.inputValue],
-        }));
+            inputValue: ''
+        }), () => {
+            console.log(this.ul.querySelectorAll('div').length)
+        });
+        // setState是异步函数，因此length可能会少1
+        console.log(this.ul)
+        // console.log(this.ul.querySelectorAll('div').length)
     }
     handleItemDelete(index) {
         // const list = [...this.state.list];
@@ -85,11 +92,14 @@ class TodoList extends Component{
                         className='input'
                         value={this.state.inputValue}
                         onChange={this.handleInputChange}
+                        ref={(input) => {
+                            this.input = input
+                        }}
                     />
                     {/*这是注释*/}
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
-                <ul>
+                <ul ref={(ul) => {this.ul = ul}}>
                     {this.getTodoItem()}
                 </ul>
             </Fragment>
