@@ -18,6 +18,16 @@ class TodoList extends Component{
     // componentWillMount() {
     // }
     componentDidMount() {
+        axios.get('/api/todolist')
+            .then((res) => {
+                console.log(res);
+                this.setState(() => {
+                    return {
+                        list: [...res.data]
+                    }
+                })
+            })
+            .catch(() => {console.log('ajax error')});
     }
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         return true;
