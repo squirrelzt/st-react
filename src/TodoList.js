@@ -8,14 +8,28 @@ class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleStoreChange = this.handleStoreChange.bind(this);
+        store.subscribe(this.handleStoreChange);
     }
 
+    handleStoreChange() {
+        this.setState(store.getState())
+    }
+    handleInputChange(e) {
+        const action = {
+            type: 'change_input_value',
+            value: e.target.value
+        }
+        store.dispatch(action)
+    }
     render() {
         return (
             <Fragment>
                 <Input placeholder='todo info'
                        style={{width: '300px', marginRight: '10px'}}
                        value={this.state.inputValue}
+                       onChange={this.handleInputChange}
                 />
                 <Button type='primary' >提交</Button>
                 <List
