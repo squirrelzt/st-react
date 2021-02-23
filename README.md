@@ -114,3 +114,5 @@ UnMounting:
 store是唯一的
 只有store能改变自身
 reducer是纯函数
+
+无状态组件就是一个函数,只有一个render,性能比class高，UI组件只负责渲染,可以使用无状态组件
