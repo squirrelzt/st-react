@@ -109,3 +109,8 @@ updation:
         componentDidUpdate
 UnMounting:
      componentWillUnMount
+
+
+store是唯一的
+只有store能改变自身
+reducer是纯函数
