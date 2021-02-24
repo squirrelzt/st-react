@@ -6,10 +6,6 @@ import { connect } from "react-redux";
 
 class TodoList extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { inputValue, list, handleInputChange, handleBtnClick, handleItemDelete } = this.props;
         return <TodoListUI
