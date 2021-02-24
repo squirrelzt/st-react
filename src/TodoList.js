@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import store from "./store";
 import { getInputChangeAction, getAddTodoItemAction, getDeleteTodoItemAction, getInitListAction } from './store/actionCreators';
 import TodoListUI from "./TodoListUI";
-import axios from 'axios';
+import { connect } from "react-redux";
 
 class TodoList extends Component {
 
@@ -34,11 +34,11 @@ class TodoList extends Component {
     }
     render() {
         return <TodoListUI
-                    inputValue={this.state.inputValue}
-                    list={this.state.list}
-                    handleInputChange={this.handleInputChange}
-                    handleBtnClick={this.handleBtnClick}
-                    handleItemDelete={this.handleItemDelete}
+                    inputValue={this.props.inputValue}
+                    list={this.props.list}
+                    handleInputChange={this.props.handleInputChange}
+                    handleBtnClick={this.props.handleBtnClick}
+                    handleItemDelete={this.props.handleItemDelete}
                 />
     }
 
@@ -49,4 +49,27 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList
+const mapStateToProps = (state) => {
+    return {
+        inputValue: state.inputValue,
+        list: state.list
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleInputChange(e) {
+            const action = getInputChangeAction(e.target.value);
+            dispatch(action);
+        },
+        handleBtnClick(e) {
+            const action = getAddTodoItemAction();
+            dispatch(action);
+        },
+        handleItemDelete(index) {
+            const action = getDeleteTodoItemAction(index);
+            dispatch(action);
+        }
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
