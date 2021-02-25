@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoList from "./TodoList";
 import { Provider } from 'react-redux';
 import store from "./store";
+import App from './App';
+import { GlobalStyle } from './style.js';
 
-const App = (
+const Mount = (
     <Provider store={store}>
-        <TodoList/>
+        <GlobalStyle/>
+        <App/>
     </Provider>
 );
 
-ReactDOM.render(App, document.getElementById('root'));
+ReactDOM.render(Mount, document.getElementById('root'));
 
