@@ -4,9 +4,6 @@ import Header from './common/header'
 import store from "./store";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
