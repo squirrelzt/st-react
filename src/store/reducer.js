@@ -1,13 +1,21 @@
 import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM, INIT_LIST } from './actionTypes'
 
 const defaultState = {
-    inputValue: '',
-    list: []
-}
+    focused: false
+};
 
 // reducer可以接收state，不能修改
 export default (state = defaultState, action) => {
     // console.log(state, action)
+    if (action.type === 'search_focus') {
+        return {
+            focused: true
+        }
+    } else if (action.type === 'search_blur') {
+        return {
+            focused: false
+        }
+    }
     if (action.type === CHANGE_INPUT_VALUE) {
         const newState = JSON.parse(JSON.stringify(state));
         newState.inputValue = action.value;
