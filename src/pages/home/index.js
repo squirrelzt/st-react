@@ -5,24 +5,12 @@ import Topic from "./components/Topic";
 import List from "./components/List";
 import Recommend from "./components/Recommend";
 import Writer from "./components/Writer";
-import axios from 'axios';
-import * as actionCreators from "../../common/header/store/actionCreators";
+import { actionCreators } from './store';
 
 class Home extends Component {
 
     componentDidMount() {
-        axios.get('/api/home.json').then((res)=>{
-            console.log(res.data);
-            const result = res.data.data;
-            console.log(result);
-            const action = {
-                type: 'change_home_data',
-                topicList: result.topicList,
-                articleList: result.articleList,
-                recommendList: result.recommendList
-            };
-            this.props.changeHomeDate(action);
-        })
+        this.props.changeHomeDate();
     }
 
     render() {
@@ -54,7 +42,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    changeHomeDate(action) {
+    changeHomeDate() {
+        const action = actionCreators.getHomeInfo();
         dispatch(action);
     }
 });
