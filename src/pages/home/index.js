@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { HomeWrapper, HomeLeft, HomeRight } from './style';
+import { HomeWrapper, HomeLeft, HomeRight, BackTop } from './style';
 import Topic from "./components/Topic";
 import List from "./components/List";
 import Recommend from "./components/Recommend";
@@ -11,8 +11,20 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.changeHomeDate();
+        this.bindEvents();
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.props.changeScrollTopShow)
+    }
+
+    bindEvents() {
+        window.addEventListener('scroll', this.props.changeScrollTopShow)
+    }
+
+    handleScrollTop() {
+        window.scrollTo(0, 0);
+    }
     render() {
         return (
             <HomeWrapper>
@@ -28,6 +40,10 @@ class Home extends Component {
                     <Recommend />
                     <Writer />
                 </HomeRight>
+                {
+                    this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>顶部</BackTop> : null
+                }
+
             </HomeWrapper>
         )
     }
@@ -37,7 +53,8 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         totalPage: state.getIn(['header', 'totalPage']),
-        mouseIn: state.getIn(['header', 'mouseIn'])
+        mouseIn: state.getIn(['header', 'mouseIn']),
+        showScroll: state.getIn(['home', 'showScroll'])
     }
 };
 
@@ -45,6 +62,13 @@ const mapDispatchToProps = (dispatch) => ({
     changeHomeDate() {
         const action = actionCreators.getHomeInfo();
         dispatch(action);
+    },
+    changeScrollTopShow(e) {
+        if (document.documentElement.scrollTop > 400) {
+            dispatch(actionCreators.toggleTopShow(true))
+        } else {
+            dispatch(actionCreators.toggleTopShow(false))
+        }
     }
 });
 
