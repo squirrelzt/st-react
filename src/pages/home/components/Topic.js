@@ -12,7 +12,9 @@ class Topic extends Component {
                     list.map((item) => (
                        <TopicItem key={item.get('id')}>
                            <img className='topic-pic'
-                                src={item.get('imgUrl')}/>
+                                src={item.get('imgUrl')}
+                                alt=''
+                           />
                            {item.get('title')}
                        </TopicItem>
                     ))
@@ -23,7 +25,7 @@ class Topic extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    list: state.get('home').get('topicList')
+    list: state.getIn(['home', 'topicList'])
 });
 
 

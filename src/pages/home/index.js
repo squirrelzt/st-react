@@ -11,7 +11,10 @@ class Home extends Component {
         return (
             <HomeWrapper>
                 <HomeLeft>
-                    <img className='banner-img' src="//upload-images.jianshu.io/upload_images/2509688-c7c947ca37db637c.png"/>
+                    <img className='banner-img'
+                         src=''//upload-images.jianshu.io/upload_images/2509688-c7c947ca37db637c.png'
+                         alt=''
+                    />
                     <Topic />
                     <List />
                 </HomeLeft>
