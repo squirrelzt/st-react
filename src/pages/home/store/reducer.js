@@ -20,6 +20,19 @@ const defaultState = fromJS({
         title: '很多人活在幻想中，等待着有朝一日',
         desc: '把聪明才智放在谋取利益之上 以前我看到有人讨论这么一个问题，在一些时期，是大师迭出的年代，而为什么现在没有大师了呢？大师都去哪了？有人说...',
         imgUrl: 'https://upload.jianshu.io/collections/images/633082/timg_%281%29.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144/format/webp'
+    }],
+    recommendList: [{
+        id: 1,
+        imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-daily-e6f6601abc495573ad37f2532468186f.png'
+    },{
+        id: 2,
+        imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png'
+    },{
+        id: 3,
+        imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png'
+    },{
+        id: 4,
+        imgUrl: 'https://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png'
     }]
 });
 
