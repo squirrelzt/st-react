@@ -30,7 +30,7 @@ class Home extends PureComponent {
             <HomeWrapper>
                 <HomeLeft>
                     <img className='banner-img'
-                         src='//upload-images.jianshu.io/upload_images/2509688-c7c947ca37db637c.png'
+                         src={require('../../assets/images/nav.png')}
                          alt=''
                     />
                     <Topic />
