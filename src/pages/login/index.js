@@ -30,7 +30,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     login(accountElem, passwordElem) {
-        console.log(accountElem.value, passwordElem.value);
         dispatch(actionCreators.login(accountElem.value, passwordElem.value))
     }
 });
