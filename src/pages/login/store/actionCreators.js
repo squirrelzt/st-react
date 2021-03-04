@@ -1,17 +1,21 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
-const changeDetail = (title, content) => ({
-   type: actionTypes.CHANGE_DETAIL,
-    title,
-    content
+const changeLogin = (title, content) => ({
+   type: actionTypes.CHANGE_LOGIN,
+    value: true
 });
 
-export const getDetail = (id) => {
+export const login = (account, password) => {
     return (dispatch) => {
-        axios.get('/api/detail.json?id=' + id).then((res) => {
+        axios.get('/api/login.json?account='+ account + '&password=' + password).then((res) => {
             const result = res.data.data;
-            dispatch(changeDetail(result.title, result.content))
+            if (result) {
+                dispatch(changeLogin())
+            } else {
+                alert('登录成功')
+            }
+            // dispatch(changeDetail(result.title, result.content))
         })
     }
 };
