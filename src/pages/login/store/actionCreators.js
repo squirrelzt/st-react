@@ -1,8 +1,8 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
-const changeLogin = (title, content) => ({
-   type: actionTypes.CHANGE_LOGIN,
+const changeLogin = () => ({
+    type: actionTypes.CHANGE_LOGIN,
     value: true
 });
 
@@ -20,3 +20,8 @@ export const login = (account, password) => {
     }
 };
 
+
+export const logout = () => ({
+    type: actionTypes.LOGOUT,
+    value: false
+})
